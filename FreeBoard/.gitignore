@@ -1,9 +1,4 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+
 
 ### STS ###
 .apt_generated
@@ -158,5 +153,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Avoid ignoring file 
+!gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
