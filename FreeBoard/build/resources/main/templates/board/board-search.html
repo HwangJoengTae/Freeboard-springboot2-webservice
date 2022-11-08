@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+  <head>
+    
+  </head>
+
+  <div layout:fragment="content">
+   
+   <div id="posts_list">
+    <table id="table" class="table table-horizontal mt-3">
+        <thead id="thead">
+        <tr>
+            <th>번호</th>
+            <th class="col-md-6 text-center">제목</th>
+            <th class="text-center">작성자</th>
+            <th class="text-center">작성일</th>
+            <th class="text-center">조회수</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+       	<tr th:each="list : ${searchList}">
+       		<td th:text="${list.id}"></td>
+       		<td class="col-md-6 text-center"><a th:text="${list.title}" th:href="@{'/board/read/' + ${list.id}}" ></a></td>
+       		<td class="text-center" th:text="${list.writer}"></td>
+       		<td class="text-center" th:text="${list.createdDate}"></td>
+       		<td class="text-center" th:text="${list.view}"></td>
+       	</tr>
+        	
+       
+        
+        </tbody>
+    </table>
+    	
+   <nav class="nav justify-content-center bg-light">
+    <ul class="pagination"  >
+    <li class="page-item">
+     <a class="page-link" th:href="@{/(page=1)}" >처음</a>
+    </li>
+    <li class="page-item" th:classappend="${startPage == searchList.pageable.pageNumber +1 } ? 'disabled'">
+     <a class="page-link" th:href="@{/(page=${searchList.pageable.pageNumber})}" tabindex="1" aria-label="Previous">
+        <span aria-hidden="true">&lt;</span>
+     </a>
+    </li>
+    <li th:each="page: ${#numbers.sequence(startPage,endPage)}" th:classappend="${page == searchList.pageable.pageNumber +1} ? 'pagination_button page-item active' : 'pagination_button page-item'">
+     <a class="page-link" th:text="${page}" th:href="@{/(page=${page})}"></a>
+    </li>
+    <li class="page-item"  th:classappend="${endPage == searchList.pageable.pageNumber + 1} ? 'disabled'">
+     <a class="page-link" th:href="@{/(page=${searchList.pageable.pageNumber + 1})}">
+        <span aria-hidden="true">&gt;</span>
+     </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:href="@{/(page=${searchList.totalPages})}" href="#">마지막</a>
+    </li>
+    </ul>
+   </nav>
+    <div class="text-right">
+        <a href="/board/write" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
+    </div>
+   
+	</div>
+  </div>
+</html>

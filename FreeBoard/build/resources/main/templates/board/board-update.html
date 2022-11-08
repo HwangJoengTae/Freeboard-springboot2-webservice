@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+>
+  <head>
+    <!--    thymeleaf layout dialect가 contents페이지의 head태그를 layout의 head태그에 자동으로 추가해준다. -->
+    <!--    필요힌 css, script 추가영역 -->
+  </head>
+
+  <div layout:fragment="content">
+   <div id="posts_list">
+    <div class="col-md-12 mt-3">
+        <form class="card">
+            <div class="card-header d-flex justify-content-between">
+                <label for="id">번호 : <span th:text="${board.id}"></span></label>
+                <input type="hidden" id="id" th:value="${board.id}"> 
+                <label for="createdDate"><span th:text="${board.createdDate}"></span></label>
+            </div>
+            <div class="card-header d-flex justify-content-between">
+                <label for="writer">작성자 : <span th:text="${board.writer}"></span> </label>
+                <label for="view"><i class=" bi bi-eye-fill"> <span th:text="${board.view}"></span></i></label>
+            </div>
+            <div class="card-body">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" th:value="${board.title}">
+                <br/>
+                <label for="content">내용</label>
+                <textarea rows="5" class="form-control" id="content" th:text="${board.content}"></textarea>
+            </div>
+            
+        </form>
+
+
+           <!--버튼-->
+        <a th:href="@{'/board/read/' + ${board.id}}" role="button" class="btn btn-info bi bi-arrow-return-left"> 취소</a>
+        <button type="button" id="btn-update" class="btn btn-primary bi bi-pencil-square"> 완료</button>
+           
+       
+    </div>
+   </div>
+   
+   <script type="text/javascript" th:src="@{/js/app.js}" ></script>
+  
+  </div>
+</html>
