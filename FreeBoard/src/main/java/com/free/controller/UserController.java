@@ -26,6 +26,7 @@ import com.free.dto.UserDto.Response;
 import com.free.service.UserService;
 import com.free.validator.CustomValidators;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor //생성자 주입 어노테이션
@@ -47,7 +48,7 @@ public class UserController {
 	        binder.addValidators(UsernameValidator);
 	    }
 	
-	
+	 @ApiOperation(value="로그인 페이지 이동")
 	 @GetMapping("/auth/login")
 	    public String login(@RequestParam(value = "error", required = false)String error,
 	                        @RequestParam(value = "exception", required = false)String exception,
@@ -59,13 +60,14 @@ public class UserController {
 	        return "/user/user-login";
 	}
   
-
+    @ApiOperation(value="가입 페이지 이동") 
     @GetMapping("/auth/join")
     public String join() {
         return "/user/user-join";
     }
 
     /* 회원가입 */
+    @ApiOperation(value="회원가입")
     @PostMapping("/auth/joinProc")
     public String joinProc(@Valid UserDto.Request dto, Errors errors, Model model) {
         if (errors.hasErrors()) {
@@ -86,6 +88,7 @@ public class UserController {
     
     
     /* Security에서 로그아웃은 기본적으로 POST지만, GET으로 우회 */
+    @ApiOperation(value="로그아웃")
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -97,6 +100,7 @@ public class UserController {
     }
 
     /* 회원정보 수정 */
+    @ApiOperation(value="회원 수정 요청")
     @GetMapping("/modify")
     public String modify(HttpSession httpSession, Model model) {
     	Response user = (Response) httpSession.getAttribute("user");

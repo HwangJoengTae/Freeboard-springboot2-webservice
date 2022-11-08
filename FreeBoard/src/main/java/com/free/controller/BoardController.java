@@ -22,6 +22,8 @@ import com.free.dto.CommentDto;
 import com.free.dto.UserDto.Response;
 import com.free.service.BoardService;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @Controller
 public class BoardController {
@@ -30,7 +32,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	
+	@ApiOperation(value="게시판 글 목록 출력")
 	@GetMapping("/")
 	public String boardList(Model model, HttpSession httpSession,@PageableDefault Pageable pageable) {
 		logger.info("게시판 글 목록");
@@ -58,6 +60,7 @@ public class BoardController {
 	}
 	
 	//글 작성
+	@ApiOperation(value="게시판 글작성페이지 이동")
 	@GetMapping("/board/write")
 	public String write(Model model, HttpSession httpSession,Board board){
 		Response user = (Response) httpSession.getAttribute("user");
@@ -71,6 +74,7 @@ public class BoardController {
 	}
 			
 	//답변 작성
+	@ApiOperation(value="답변 작성 페이지 이동")
 	@GetMapping("/board/reply/{id}")
 	public String rewrite(Model model, HttpSession httpSession,@PathVariable Long id){
 		Response user = (Response) httpSession.getAttribute("user");
@@ -84,6 +88,7 @@ public class BoardController {
 	
 	
 	 //글 상세보기
+	@ApiOperation(value="상세 페이지 이동")
     @GetMapping("/board/read/{id}")
     public String read(@PathVariable Long id, Model model,HttpSession httpSession) {
     	Response user = (Response) httpSession.getAttribute("user");
@@ -122,6 +127,7 @@ public class BoardController {
     
     
     //글 수정
+	@ApiOperation(value="수정 페이지 이동")
     @GetMapping("/board/update/{id}")
     public String update(@PathVariable Long id, Model model, HttpSession httpSession) {
     	Response user = (Response) httpSession.getAttribute("user");
@@ -136,6 +142,7 @@ public class BoardController {
    
     
     //글 검색
+	@ApiOperation(value="검색페이지 이동")
     @GetMapping("/board/search")
     public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
     Pageable pageable, HttpSession httpSession) {

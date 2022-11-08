@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.free.dto.UserDto;
 import com.free.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -28,6 +29,7 @@ public class UserApiController {
 
     private final AuthenticationManager authenticationManager;
 
+    @ApiOperation(value="회원 정보 수정",notes="성공시 회원정보를 수정합니다.")
     @PutMapping("/user")
     public ResponseEntity<String> modify(@RequestBody UserDto.Request dto) {
         

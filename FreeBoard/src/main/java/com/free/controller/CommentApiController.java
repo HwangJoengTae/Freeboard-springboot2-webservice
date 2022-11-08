@@ -19,6 +19,7 @@ import com.free.dto.CommentDto;
 import com.free.dto.UserDto.Response;
 import com.free.service.CommentService;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -32,6 +33,7 @@ public class CommentApiController {
     private final CommentService commentService;
 
     /* CREATE */
+    @ApiOperation(value="댓글 작성",notes="성공시 댓글 작성합니다.")
     @PostMapping("/board/{id}/comments")
     public ResponseEntity save(@PathVariable Long id, @RequestBody CommentDto.Request dto,
                               HttpSession httpSession) {
@@ -40,6 +42,7 @@ public class CommentApiController {
     }
 
     /* READ */
+    @ApiOperation(value="댓글 읽기",notes="성공시 댓글을 읽습니다.")
     @GetMapping("/board/{id}/comments")
     public List<CommentDto.Response> read(@PathVariable Long id) {
         
@@ -47,6 +50,7 @@ public class CommentApiController {
     }
 
     /* UPDATE */
+    @ApiOperation(value="댓글 수정",notes="성공시 댓글 수정합니다.")
     @PutMapping({"/board/{id}/comments/{id}"})
     public ResponseEntity update(@PathVariable Long id, @RequestBody CommentDto.Request dto) {
         commentService.update(id, dto);
@@ -54,6 +58,7 @@ public class CommentApiController {
     }
 
     /* DELETE */
+    @ApiOperation(value="댓글 삭제",notes="성공시 댓글 삭제합니다.")
     @DeleteMapping("/board/{id}/comments/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         commentService.delete(id);
