@@ -11,13 +11,13 @@ branches:
 # 2
 cache:
   directories:
-    - '$HOME/.m2'
+    - '$HOME/.m2/repository'
+    - $HOME/.gradle
 
-before_install:
-  - chmod +x mvnw
+
 
 # 3
-script: "./mvnw clean package"
+script: "./gradlew clean build"
 
 # CI 실행 완료시 메일로 알람
 # 4
