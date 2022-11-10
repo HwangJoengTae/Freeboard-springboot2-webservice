@@ -55,7 +55,7 @@ public class BoardController {
 			
 		
 		
-		return "/board/main";
+		return "board/main";
 
 	}
 	
