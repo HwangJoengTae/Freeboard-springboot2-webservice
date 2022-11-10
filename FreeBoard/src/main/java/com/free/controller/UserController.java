@@ -57,13 +57,13 @@ public class UserController {
 	        model.addAttribute("exception", exception);
 	        
 	      
-	        return "/user/user-login";
+	        return "user/user-login";
 	}
   
     @ApiOperation(value="가입 페이지 이동") 
     @GetMapping("/auth/join")
     public String join() {
-        return "/user/user-join";
+        return "user/user-join";
     }
 
     /* 회원가입 */
@@ -109,7 +109,7 @@ public class UserController {
             model.addAttribute("userName",user.getNickname());
             
         }
-        return "/user/user-modify";
+        return "user/user-modify";
     }
 	
 	
