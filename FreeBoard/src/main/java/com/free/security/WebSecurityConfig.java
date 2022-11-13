@@ -61,10 +61,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		  .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외처리 */
           .and()
 	      .authorizeRequests()
-          .antMatchers("/", "/auth/**", "/board/read/**", "/board/search/**","/a","/v2/api-docs")
+          .antMatchers("/", "/auth/**", "/board/read/**", "/board/search/**","/a","/v2/api-docs","/profile")
           .permitAll()
-          .anyRequest().authenticated()
+          .anyRequest()
+          .authenticated()
           .and()
+          
+          
           .formLogin()
           .loginPage("/auth/login") //커스텀로그인 페이지 
           .loginProcessingUrl("/auth/loginProc") //주소 요청 오는
