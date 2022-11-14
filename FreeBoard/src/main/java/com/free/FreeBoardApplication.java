@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
-public class FreeBoardApplication  {
+public class FreeBoardApplication   {
 	
 	
 	public static void main(String[] args) {

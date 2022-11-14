@@ -13,13 +13,13 @@ import lombok.RequiredArgsConstructor;
 public class ProfileController {
 	   private final Environment env;
 	    
-	    //현재 어떤 포트로 돌아가는지 확인용. set1 = 8081, set2 = 8082
-	    @GetMapping("/profile")
-	    public String profile() {
-	        //현재 동작중인 프로파일의 이름을 반환
-	        return Arrays.stream(env.getActiveProfiles()).findFirst().orElse("");
+	   @GetMapping("/profile")
+	    public String getProfile () {
+	        return Arrays.stream(env.getActiveProfiles())
+	                .filter(e -> "set1".equals(e) || "set2".equals(e))
+	                .findFirst()
+	                .orElse("");
 	    }
-	   
     
     
 
